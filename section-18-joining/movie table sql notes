@@ -1,0 +1,139 @@
+
+
+--TODO: ALL SELECT commands
+
+select * from directors;
+select * from actors;
+select * from movies;
+select * from movies_revenues;
+select * from movies_actors;
+
+--TODO: create table actors();
+-- TODO: create table directors();
+--TODO: create table movie()--> must have foreign key director_id;
+--TODO: create a movies_revenues table();
+
+
+--TODO: 15.creating actors table:
+CREATE TABLE actors (
+	actor_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(150),
+	last_name varchar(150) not null,
+	gender char(1),
+	date_of_birth date,
+	add_date date,
+	update_date date
+	
+);
+--TODO: 16.creating directors table:
+create table directors (
+	director_id serial primary key,
+	first_name varchar(150),
+	last_name varchar(150),
+	date_of_birth date,
+	nationality varchar(20),
+	add_date date,
+	update_date date
+);
+
+-- TODO:17.creating movies table:
+create table movies (
+	movie_id serial primary key,
+	movie_name varchar(100) not null,
+	movie_length int,
+	movie_lang varchar(20),
+	age_certififcate varchar(10),
+	release_date date,
+	director_id int references directors(director_id)
+	
+);
+
+--TODO: 18.creating movies_revenues table:
+create table movies_revenues (
+	revenue_id serial primary key,
+	movie_id int references movies(movie_id),
+	revenues_domestic numeric (10,2),
+	revenues_international numeric (10,2)
+);
+
+--TODO: 19.creating movies_actions junction table:
+create table movies_actors (
+	movie_id int references movies(movie_id),
+	actor_id int references actors(actor_id),
+	primary key (movie_id,actor_id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
