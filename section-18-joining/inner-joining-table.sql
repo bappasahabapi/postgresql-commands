@@ -1,5 +1,13 @@
--
+---TODO: Lets join actors,movies_actor,movies,directors,movies_revenues together
+-- JOIN =INNERJOIN is same
 
+select 
+* 
+from actors ac
+join movies_actors ma on ma.actor_id =ac.actor_id
+join movies mv on mv.movie_id=ma.movie_id
+join directors d on d.director_id=mv.director_id
+join movies_revenues mr on mr.movie_id=mv.movie_id
 
 
 
@@ -196,6 +204,20 @@ where
 	m.release_date between '2005-01-01' and '2008-12-31'
 order by 7 desc nulls last
 limit 10
+
+
+---TODO: Lets join actors,movies_actor,movies,directors,movies_revenues together
+--Todo: JOIN =INNERJOIN is same
+
+select 
+* 
+from actors ac
+join movies_actors ma on ma.actor_id =ac.actor_id
+join movies mv on mv.movie_id=ma.movie_id
+join directors d on d.director_id=mv.director_id
+join movies_revenues mr on mr.movie_id=mv.movie_id
+
+
 
 
 -- TODO: 7. inner join tables with different columns data types
