@@ -1,9 +1,10 @@
+-- Active: 1691336670489@@127.0.0.1@5432@module_31
 --                          TODO:01
 --*  -> 01. Foreign Key Constraint And Data Integrity <-
 
 -- we have two table 
 --!                         employee table
--- Each employee belongs to a department 
+-- Each employee belongs to a department ;
 
 SELECT * FROM Employee;
 CREATE Table Employee(
@@ -131,6 +132,7 @@ VALUES
 
 -------------------------------- 
 SELECT * FROM departments;
+
 SELECT * FROM employees;
 SELECT 
     name,
@@ -328,3 +330,64 @@ select
 from employees e
 full join departments d on e.deptid=d.deptid
 group by d.name having d.name='HR';
+
+
+
+--                      TODO:10
+--*  ->             Sub Queries				      <-
+
+-- Active: 1691336670489@@127.0.0.1@5432@module_31@public
+
+
+select * from employees;
+ select max(salary) from employees;
+
+select * from employees where salary='30000';
+
+select * from employees where salary=(
+    select max(salary) from employees
+);
+-------------------------------------;
+
+select avg(salary) from employees;
+
+select * from employees where salary >(
+select avg(salary) from employees
+);
+
+select 
+    email, 
+    (select avg(salary) from employees)
+from employees;
+
+
+
+--                      TODO:12
+--*  ->          Stored Procedures and Functions		      <-
+--! Store Procesdure
+
+CREATE PROCEDURE deactive_unpaid_accounts()
+LANGUAGE SQL
+AS $$
+    update accounts SET account =false where balance=0;
+$$;
+
+CALL deactive_unpaid_accounts();
+
+
+--! fuction
+
+CREATE FUNCTION account_type_count(account_type text) RETURNS INTEGER
+LANGUAGE plpgsql
+AS $$
+    -- update accounts SET account =false where balance=0;
+    DECLARE account_count INTEGER;
+    BEGIN
+        SELECT count(*) INTO account_count  FROM accounts WHERE accounts.account_type=$1;
+        RETURN account_count;
+    END;
+$$;
+
+
+
+
