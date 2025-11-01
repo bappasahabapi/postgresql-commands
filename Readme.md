@@ -1,6 +1,8 @@
-PostgreSQL Bootcamp : Go From Beginner to Advanced, 60+hours
-by - Adnan Waheed
+PostgreSQL Bootcamp : **Go From Beginner to Advanced, 60+hours
+by - Adnan Waheed**
 Learn about Subqueries, CTEs, Indexes, PL/SQL, PL/pgSQL, Triggers, Cursors, Partitions, Views, JSON, Window Functions...
+
+- 📁: bootcamps
 
 # sql-commands
 
