@@ -1,11 +1,49 @@
----TODO: Lets join actors,movies_actor,movies,directors,movies_revenues together
--- JOIN =INNERJOIN is same
+```sql
+create database bs_movies;
 
+---TODO: Lets join actors,movies_actor,movies,directors,movies_revenues together
+-- ## JOIN =INNERJOIN is same
 /* 
- 
+
+-> PostgreSQL JOIN is used to combine/attach columns from one or more tables
+based on the value of the COMMON COLUMNS between the tables;
+
+-> These COMMON COLUMNS are generally
+    PRIMARY KEY column of the first table and FOREIGN KEY column of the second table
+
+-->For INNER JOIN: All common columns defined at ON must matche values on both sides;
+        ON = Here we write the connection column conditon.
+
+SYNTEX:
+---------
+select *
+from table_a
+join table_b
+on table_a.key_column =table_b.foreign_key_column;
+
+--
+select 
+    table1.column1,
+    table2.column2
+from table1
+inner join table2 
+on tabel1.column1 =table2.column2; 
 
  */
 
+-------
+
+select * from directors;
+select * from actors;
+select * from movies;
+select * from movies_revenues;
+select * from movies_actors;
+
+
+-- ---------------
+
+
+---\\TODO: Lets join actors,movies_actor,movies,directors,movies_revenues together
 select 
 * 
 from actors ac
@@ -14,7 +52,7 @@ join movies mv on mv.movie_id=ma.movie_id
 join directors d on d.director_id=mv.director_id
 join movies_revenues mr on mr.movie_id=mv.movie_id
 
-
+------
 
 
 --TODO: 1. Combine movies and directors table
@@ -35,11 +73,12 @@ select
 	
 	directors.first_name
 	
-from movies
-inner join directors
-on movies.director_id =directors.director_id
+from movies --first table
+inner join directors  --second table
+on movies.director_id =directors.director_id  -- applied the condition
 
 ---TODO: 2. joins with an alias way
+
 select
 	m.movie_id,
 	m.movie_name,
@@ -80,6 +119,7 @@ where m.movie_lang='English'
 and d.director_id =3
 
 ---TODO: 4. Using tablename.* or table_alias.* instead of individul column name
+-- this take everything
 select
 	m.*,
 	
@@ -91,6 +131,7 @@ on m.director_id =d.director_id
 
 
 --TODO: 5.' USING' keyword when we have common column
+
 select *
 from movies
 inner join directors using(director_id)
@@ -244,3 +285,6 @@ select
 from t1
 inner join t2 on t1.test =cast(t2.test as int)
 
+
+
+```
